@@ -1,0 +1,31 @@
+# ignore these no matter what
+README.md
+LICENSE
+.DS_Store
+.bash_sessions
+com.googlecode.iterm2.plist
+.vim/plugged/**
+*history
+*hst
+
+sdev/**
+Library/**
+{{ if not .school }}
+# install these only for school
+!sdev/.gitconfig
+{{ end }}
+
+{{ if ne .chezmoi.os "darwin" }}
+# install these only on mac
+private_Library/**
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+# install these only on linux
+{{ end }}
+
+{{ if ne .chezmoi.os "windows" }}
+# install these only on windows
+{{ else }}
+# install these only on non-windows
+{{ end }}

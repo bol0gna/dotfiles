@@ -1,0 +1,105 @@
+if &compatible
+    set nocompatible
+endif
+
+call plug#begin()
+" general plugins
+Plug 'sainnhe/gruvbox-material'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+" filetype-specific plugins
+Plug 'alker0/chezmoi.vim', { 'for': 'tmpl' }
+Plug 'jez/vim-better-sml' ", { 'for': ['sml', 'sig', 'fun', 'lex', 'grm', 'cm', 'mlb', 'smackspec', 'smi'] }
+Plug 'maelvls/gmpl.vim', {'for': ['mod', 'lp'] }
+call plug#end()
+
+if empty("$XDG_DATA_HOME")
+    let $XDG_DATA_HOME="$HOME/.local/share"
+endif
+if empty("$XDG_STATE_HOME")
+    let $XDG_STATE_HOME="$HOME/.local/state"
+endif
+
+syntax on
+filetype plugin indent on
+
+" io
+set clipboard=unnamed
+set encoding=utf-8
+set mouse=a
+set autoread
+set ttyfast
+set lazyredraw
+set noerrorbells
+set novisualbell
+
+set nobackup
+set writebackup
+set backupdir=$XDG_STATE_HOME/vim/backup,/tmp
+set undodir=$XDG_STATE_HOME/vim/undo,/tmp
+set directory=/tmp
+set viminfofile=$XDG_STATE_HOME/vim/viminfo
+set history=200
+
+" search
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" editing
+set showmatch
+set backspace=indent,eol,start
+set formatoptions+=j
+set autoindent
+set smarttab
+set tabstop=8
+set shiftwidth=4
+set softtabstop=-1 " sts = sw
+set expandtab
+
+" interface
+set ruler
+set number
+" set relativenumber
+" augroup numbertoggle
+"    autocmd!
+"    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+"    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+" augroup END
+set display=lastline
+" set display+=uhex
+set wrap linebreak
+set list listchars=tab:>·,trail:.,extends:>,precedes:<,nbsp:_
+" set listchars+=eol:$
+set scrolloff=3
+set showmode
+set laststatus=2
+set showcmd
+set wildmenu
+
+if has('termguicolors')
+    set termguicolors
+endif
+set background=dark
+let g:gruvbox_material_background='medium'
+" let g:gruvbox_material_enable_italic=0
+" let g:gruvbox_material_disable_italic_comment=1
+" let g:gruvbox_material_transparent_background=1
+colorscheme gruvbox-material
+
+" netrw
+let g:netrw_home=$XDG_DATA_HOME
+let g:netrw_liststyle=3
+
+" filetypes
+if has("autocmd")
+    filetype plugin indent on
+    autocmd FileType make set sw=0 sts=0 noet
+    autocmd FileType gitconfig set sw=0 sts=0 noet
+endif
+set nomodeline
+set modelines=0
+

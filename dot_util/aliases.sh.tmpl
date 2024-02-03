@@ -1,0 +1,25 @@
+## navigation
+alias la='ls -a'
+alias ll='ls -lah'
+
+# resolve symlink in pwd
+alias cdp='cd "`pwd -P`"'
+
+alias cdd='cd ..'
+alias cddd='cd ../..'
+alias cdddd='cd ../../..'
+
+## verbose (show log)
+alias cp="cp -v"
+alias mv="mv -v"
+alias rm="rm -v"
+
+## color
+alias grep &> /dev/null || alias grep='grep --color=auto'
+
+{{- if eq .chezmoi.os "darwin" }}
+alias defr='defaults read'
+alias defg='defaults read -g'
+{{- end }}
+
+alias czm='chezmoi'

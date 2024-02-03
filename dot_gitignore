@@ -1,0 +1,22 @@
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+[Dd]esktop.ini
+
+# vim
+*~
+.netrwhist
+
+# GPG
+secring.*
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+

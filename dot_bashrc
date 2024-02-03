@@ -1,0 +1,25 @@
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# inspired by https://github.com/jez/dotfiles/blob/master/bashrc
+_load() {
+    if [ -n "$FAIL" ]; then
+        return
+    fi
+
+    if [ -f "$1" ]; then
+        source $1
+        if [ "$?" != "0" ]; then
+            echo "could not load $1"
+            export FAIL=1
+        fi
+    fi
+}
+
+_load ~/.util/env.sh
+_load ~/.secrets.sh
+_load ~/.util/aliases.sh
+_load ~/.util/prompt.bash
+
+# shopt -s histappend
+# shopt -s globstar

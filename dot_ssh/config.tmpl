@@ -1,0 +1,13 @@
+{{- if .school }}
+Host *.duke.edu
+    User {{ .s_netid }}
+{{- end }}
+
+Host *
+    IdentityFile ~/.ssh/id_ed25519
+{{- if eq .chezmoi.os "darwin" }}
+    AddKeysToAgent yes
+    # UseKeychain yes
+    ForwardAgent yes
+{{- end }}
+

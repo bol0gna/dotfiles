@@ -1,0 +1,60 @@
+# vim: set filetype=gitconfig noet ts=8 sw=8:
+[color]
+	ui = auto
+	branch = auto
+	diff = auto
+	interactive = auto
+	grep = auto
+	showbranch = auto
+	status = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[alias]
+	st = status -sb
+	sta = status
+	d = diff
+	ds = diff --staged
+	rst = restore
+	rss = restore --staged
+	rbi = rebase -i
+	graph = log --graph --oneline --decorate=short --branches='*'
+	# https://www.jessesquires.com/blog/2017/08/08/customizing-git-log/
+	smartlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
+	graphrel = log --graph --pretty=format:'%Cred%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	unstage = reset HEAD --
+	uncommit = reset --soft HEAD^
+
+[init]
+	defaultBranch = main
+[push]
+	default = simple
+[log]
+	follow = true
+
+[core]
+	excludesfile = ~/.gitignore
+
+[user]
+	name = bol0gna
+	email = 75225753+bol0gna@users.noreply.github.com
+{{- if .school }}
+[includeIf "gitdir:~/sdev/"]
+	path = ~/sdev/.gitconfig
+{{ end }}
+{{- if eq .chezmoi.os "darwin" }}
+[credential]
+	helper = osxkeychain
+{{- end }}
+

@@ -1,0 +1,25 @@
+{{- $full_name := promptStringOnce . "full_name" "Full name" }}
+{{- $email := promptStringOnce . "email" "Email address" }}
+{{- $github := promptStringOnce . "github" "Github user" }}
+
+{{- $school := promptBoolOnce . "school" "School setup" }}
+{{- $s_netid := "" }}
+{{- $s_email := "" }}
+{{- if $school }}
+{{-     $s_netid = promptStringOnce . "s_netid" "NetID" }}
+{{-     $s_email = promptStringOnce . "s_email" "School email for git" }}
+{{- end }}
+
+[data]
+    full_name = {{ $full_name | quote }}
+    email = {{ $email | quote }}
+    github = {{ $github | quote }}
+    school = {{ $school }}
+{{- if $school }}
+    s_netid = {{ $s_netid | quote }}
+    s_email = {{ $s_email | quote }}
+{{- end }}
+
+[edit]
+    command = "vim"
+
