@@ -1,0 +1,81 @@
+{
+    "remote.SSH.localServerDownload": "always",
+    "remote.OSS.hosts": [
+        {
+            "type": "manual",
+            "name": "local",
+            "host": "127.0.0.1",
+            "port": 11111,
+            "folders": [
+                {
+                    "name": "project",
+                    "path": "/home/user/project",
+                },
+            ],
+        }
+    ],
+    "update.mode": "start",
+    "editor.fontFamily": "'JetBrains Mono', monospace",
+    "workbench.enableExperiments": false,
+    "workbench.preferredDarkColorTheme": "Gruvbox Material Dark",
+    "workbench.preferredLightColorTheme": "Gruvbox Material Light",
+    "editor.rulers": [
+        80
+    ],
+    "python.experiments.enabled": false,
+    "python.pylanceLspNotebooksEnabled": false,
+    "python.venvPath": "~/.pyenv",
+    "editor.acceptSuggestionOnEnter": "off",
+    "terminal.external.osxExec": "iTerm.app",
+    "workbench.colorTheme": "Gruvbox Material Dark",
+    "editor.fontLigatures": "'ss19', 'cv06', 'cv07', 'cv11', 'cv99'",
+    "python.terminal.launchArgs": [],
+    "rainbow_csv.enable_auto_csv_lint": false,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "ruff.importStrategy": "useBundled",
+    "ruff.codeAction.disableRuleComment": {
+        "enable": false
+    },
+    "ruff.lint.args": [
+        "--ignore=E501"
+    ],
+    "python.analysis.userFileIndexingLimit": 1500,
+    "ruff.run": "onSave",
+    "python.analysis.fixAll": [],
+    "python.analysis.packageIndexDepths": [
+        {
+            "name": "sklearn",
+            "depth": 2
+        },
+        {
+            "name": "matplotlib",
+            "depth": 2
+        },
+        {
+            "name": "scipy",
+            "depth": 2
+        },
+        {
+            "name": "django",
+            "depth": 2
+        },
+        {
+            "name": "flask",
+            "depth": 2
+        },
+        {
+            "name": "fastapi",
+            "depth": 2
+        }
+    ],
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.extraPaths": [
+        "~/.pyenv/versions/*/lib/*/site-packages/"
+    ],
+    "python.defaultInterpreterPath": "python3",
+    "extensions.autoUpdate": "onlySelectedExtensions",
+    "extensions.ignoreRecommendations": true,
+    "files.insertFinalNewline": true
+}
