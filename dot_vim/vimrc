@@ -8,6 +8,15 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-rsi'
+" Plug 'tpope/vim-sleuth'
+" Plug 'christoomey/vim-tmux-navigator'
+
+" 'IDE' stuff
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'dense-analysis/ale'
+" Plug 'airblade/vim-gitgutter' " https://github.com/airblade/vim-gitgutter
+" Plug 'sheerun/vim-polyglot'
 
 " filetype-specific plugins
 Plug 'alker0/chezmoi.vim', { 'for': 'tmpl' }

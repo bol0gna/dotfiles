@@ -17,15 +17,19 @@ sdev/**
 
 {{ if ne .chezmoi.os "darwin" }}
 # install these only on mac
+.chezmoiscripts/darwin/**
 private_Library/**
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
 # install these only on linux
+.chezmoiscripts/linux/**
 {{ end }}
 
 {{ if ne .chezmoi.os "windows" }}
 # install these only on windows
+.chezmoiscripts/windows/**
 {{ else }}
 # install these only on non-windows
+.inputrc
 {{ end }}

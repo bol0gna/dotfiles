@@ -19,7 +19,7 @@ alias grep &> /dev/null || alias grep='grep --color=auto'
 
 {{- if eq .chezmoi.os "darwin" }}
 alias defr='defaults read'
-alias defg='defaults read -g'
+alias defw='defaults write'
 {{- end }}
 
 alias czm='chezmoi'
