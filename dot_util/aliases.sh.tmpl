@@ -1,6 +1,6 @@
 ## navigation
-alias la='ls -a'
-alias ll='ls -lah'
+alias la='ls -A'
+alias ll='ls -lahF'
 
 # resolve symlink in pwd
 alias cdp='cd "`pwd -P`"'
@@ -16,10 +16,22 @@ alias rm="rm -v"
 
 ## color
 alias grep &> /dev/null || alias grep='grep --color=auto'
+alias diff &> /dev/null || alias diff='diff --color=auto'
 
 {{- if eq .chezmoi.os "darwin" }}
 alias defr='defaults read'
 alias defw='defaults write'
 {{- end }}
 
-alias czm='chezmoi'
+alias chz='chezmoi'
+
+function cdxdg () {
+    case $1 in
+        data) cd "$XDG_DATA_HOME";;
+        config) cd "$XDG_CONFIG_HOME";;
+        cache) cd "$XDG_CACHE_HOME";;
+        state) cd "$XDG_STATE_HOME";;
+        *) return 1;;
+    esac
+}
+

@@ -1,25 +1,36 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# inspired by https://github.com/jez/dotfiles/blob/master/bashrc
-_load() {
-    if [ -n "$FAIL" ]; then
-        return
-    fi
+source ~/.util/rcload.sh
 
-    if [ -f "$1" ]; then
-        source $1
-        if [ "$?" != "0" ]; then
-            echo "could not load $1"
-            export FAIL=1
-        fi
-    fi
-}
+rcload ~/.util/env_xdg.sh || return
+export HISTFILE="$XDG_STATE_HOME"/bash_history
 
-_load ~/.util/env.sh
-_load ~/.secrets.sh
-_load ~/.util/aliases.sh
-_load ~/.util/prompt.bash
+# ignore duplicate & whitespace-first cmds
+export HISTCONTROL='ignoreboth'
+
+rcload ~/.util/env.sh
+rcload ~/.util/.secrets.sh
+rcload ~/.util/aliases.sh
+rcload ~/.util/prompt.bash
+
+if type brew &>/dev/null
+then
+    if [ -z "$HOMEBREW_PREFIX" ]
+    then
+        HOMEBREW_PREFIX="$(brew --prefix)"
+    fi;
+    if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+    then
+        source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+    else
+        for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+        do
+            [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+        done
+    fi
+fi
 
 # shopt -s histappend
 # shopt -s globstar
+
