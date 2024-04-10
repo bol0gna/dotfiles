@@ -1,4 +1,3 @@
-# vim: set filetype=gitconfig noet ts=8 sw=8:
 [color]
 	ui = auto
 	branch = auto
@@ -22,11 +21,11 @@
 	untracked = cyan
 
 [alias]
-	st = status -sb
-	sta = status
+	s = status -sb
+	st = status
 	d = diff
 	ds = diff --staged
-	rst = restore
+	rs = restore
 	rss = restore --staged
 	rbi = rebase -i
 	graph = log --graph --oneline --decorate=short --branches='*'
@@ -44,7 +43,7 @@
 	follow = true
 
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.config/git/ignore
 	safecrlf = true
 
 [user]
