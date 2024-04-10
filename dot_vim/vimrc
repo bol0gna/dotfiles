@@ -2,12 +2,37 @@ if &compatible
     set nocompatible
 endif
 
+" xdg base dir
+" https://wiki.archlinux.org/title/Vim#Workaround_for_XDG_Base_Directory_specification
+" https://stackoverflow.com/questions/1549263/how-can-i-create-a-folder-if-it-doesnt-exist-from-vimrc
+if empty($XDG_DATA_HOME) | let $XDG_DATA_HOME=$HOME."/.local/share" | endif
+call mkdir($XDG_DATA_HOME."/vim", 'p', 0700)
+
+if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME=$HOME."/.config" | endif
+" call mkdir($XDG_CONFIG_HOME."/vim", 'p', 0700)
+
+if empty($XDG_CACHE_HOME) | let $XDG_CACHE_HOME=$HOME."/.cache" | endif
+" call mkdir($XDG_CACHE_HOME."/vim", 'p', 0700)
+
+if empty($XDG_STATE_HOME) | let $XDG_STATE_HOME=$HOME."/.local/state" | endif
+call mkdir($XDG_STATE_HOME."/vim", 'p', 0700)
+
+let g:netrw_home=$XDG_DATA_HOME."/vim"
+call mkdir($XDG_DATA_HOME."/vim/spell", 'p', 0700)
+
+if !has('nvim')
+    set viminfofile=$XDG_STATE_HOME/vim/viminfo
+    set viminfo+=n$XDG_STATE_HOME/vim/viminfo
+endif
+
+
 call plug#begin()
 " general plugins
 Plug 'sainnhe/gruvbox-material'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-vinegar'
 " Plug 'tpope/vim-rsi'
 " Plug 'tpope/vim-sleuth'
 " Plug 'christoomey/vim-tmux-navigator'
@@ -24,15 +49,17 @@ Plug 'jez/vim-better-sml' ", { 'for': ['sml', 'sig', 'fun', 'lex', 'grm', 'cm', 
 Plug 'maelvls/gmpl.vim', {'for': ['mod', 'lp'] }
 call plug#end()
 
-if empty("$XDG_DATA_HOME")
-    let $XDG_DATA_HOME="$HOME/.local/share"
-endif
-if empty("$XDG_STATE_HOME")
-    let $XDG_STATE_HOME="$HOME/.local/state"
-endif
-
+" filetypes
 syntax on
-filetype plugin indent on
+if has('autocmd')
+    filetype plugin indent on
+    autocmd FileType make set sw=0 sts=0 noet
+    autocmd FileType gitconfig set sw=0 sts=0 noet
+endif
+set nomodeline
+set modelines=0
+runtime! ftplugin/man.vim
+
 
 " io
 set clipboard=unnamed
@@ -48,8 +75,8 @@ set nobackup
 set writebackup
 set backupdir=$XDG_STATE_HOME/vim/backup,/tmp
 set undodir=$XDG_STATE_HOME/vim/undo,/tmp
-set directory=/tmp
-set viminfofile=$XDG_STATE_HOME/vim/viminfo
+set directory=$XDG_STATE_HOME/vim/swap,/tmp
+set viewdir=$XDG_STATE_HOME/vim/view,/tmp
 set history=200
 
 " search
@@ -89,6 +116,7 @@ set laststatus=2
 set showcmd
 set wildmenu
 
+" color scheme
 if has('termguicolors')
     set termguicolors
 endif
@@ -99,16 +127,19 @@ let g:gruvbox_material_background='medium'
 " let g:gruvbox_material_transparent_background=1
 colorscheme gruvbox-material
 
-" netrw
-let g:netrw_home=$XDG_DATA_HOME
+" netrw file browser
 let g:netrw_liststyle=3
+" let g:netrw_banner=0
 
-" filetypes
-if has("autocmd")
-    filetype plugin indent on
-    autocmd FileType make set sw=0 sts=0 noet
-    autocmd FileType gitconfig set sw=0 sts=0 noet
-endif
-set nomodeline
-set modelines=0
+" cursor: bar in insert mode, underline in replace, block otherwise
+" https://stackoverflow.com/a/42118416
+let &t_SI = "\e[6 q"
+let &t_SR = "\e[4 q"
+let &t_EI = "\e[2 q"
+" augroup cursor
+"     au!
+"     autocmd VimEnter * silent !echo -ne "\e[2 q"
+" augroup END
+set ttimeout
+set ttimeoutlen=100
 
