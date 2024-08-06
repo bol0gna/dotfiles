@@ -927,7 +927,7 @@
 				<real>0.15686273574829102</real>
 			</dict>
 			<key>Cursor Type</key>
-			<integer>2</integer>
+			<integer>1</integer>
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
@@ -1440,6 +1440,8 @@
 	<true/>
 	<key>PromptOnQuit</key>
 	<false/>
+	<key>RightOption</key>
+	<integer>3</integer>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>

@@ -3,7 +3,7 @@
 
 source ~/.util/rcload.sh
 
-rcload ~/.util/env_xdg.sh || return
+rcload ~/.util/env_xdg.sh || echo "! COULD NOT LOAD XDG ENVIRONMENT VARS !"
 export HISTFILE="$XDG_STATE_HOME"/bash_history
 
 # ignore duplicate & whitespace-first cmds

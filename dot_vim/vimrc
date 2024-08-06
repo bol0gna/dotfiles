@@ -45,8 +45,6 @@ Plug 'tpope/vim-repeat'
 
 " filetype-specific plugins
 Plug 'alker0/chezmoi.vim', { 'for': 'tmpl' }
-Plug 'jez/vim-better-sml' ", { 'for': ['sml', 'sig', 'fun', 'lex', 'grm', 'cm', 'mlb', 'smackspec', 'smi'] }
-Plug 'maelvls/gmpl.vim', {'for': ['mod', 'lp'] }
 call plug#end()
 
 " filetypes

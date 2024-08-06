@@ -1,0 +1,64 @@
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+
+## Navigation & interactive ##
+setopt GLOB_DOTS            # include hidden .files
+setopt NO_CASE_GLOB         # case insensitive paths in cd, etc
+setopt INTERACTIVE_COMMENTS # don't run commands that start w/ #
+setopt NOMATCH              # warn when unable to match anything
+
+unsetopt COMPLETE_ALIASES   # tab treats aliases as their expanded form
+setopt AUTO_MENU            # second tab starts menu completion
+# ZLE_REMOVE_SUFFIX_CHARS=$' \t\n;&'
+
+source $ZDOTDIR/plugins/help.zsh
+
+
+## Line editor ##
+bindkey -v
+export KEYTIMEOUT=50
+
+source $ZDOTDIR/plugins/cursor_mode.zsh
+
+
+## History ##
+setopt HIST_EXPIRE_DUPS_FIRST   # delete duplicates first when trimming
+setopt HIST_IGNORE_DUPS         # don't record an event 2x in a row
+setopt HIST_IGNORE_ALL_DUPS     # delete old event if new is a duplicate
+setopt HIST_IGNORE_SPACE        # don't record when starting w/ space
+setopt HIST_FIND_NO_DUPS        # don't show already-found event in line editor
+setopt HIST_SAVE_NO_DUPS        # don't write any duplicates to history
+setopt HIST_VERIFY              # show expansion from history before executing
+
+# https://unix.stackexchange.com/questions/77077/how-do-i-use-pushd-and-popd-commands
+# https://unix.stackexchange.com/questions/272965/pushd-popd-vs-cd-cd-in-bash-and-zsh
+# https://zsh.sourceforge.io/Intro/intro_6.html
+# setopt AUTO_PUSHD         # cd pushes previous dir onto stack
+# setopt PUSHD_IGNORE_DUPS  # don't store duplicates on stack
+# setopt PUSHD_SILENT       # don't print stack after pushd/popd
+# export DIRSTACKSIZE=8
+
+
+## Completion ##
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+if type brew &>/dev/null
+then
+    FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:${FPATH}"
+fi
+
+autoload -Uz compinit
+[ -d "$XDG_CACHE_HOME/zsh" ] || mkdir -p "$XDG_CACHE_HOME/zsh"
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+_comp_options+=(globdots) # completions for dotfiles too
+
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+
+# rcload already defined in ~/.zshenv
+# rcload ~/.util/env.sh # already loaded in ~/.zshenv
+rcload ~/.util/.secrets.sh
+rcload ~/.util/aliases.sh
+rcload ~/.util/prompt.zsh
+

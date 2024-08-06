@@ -3,11 +3,12 @@ export PAGER=less
 export EDITOR=vim
 export VISUAL=subl
 
-# colors
+# colors (general)
 export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxegedabagacad
 export COLORTERM=1
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+export MANCOLOR=1
 
 # homebrew
 if [ -e "/usr/local/bin/brew" ]; then
@@ -19,6 +20,11 @@ fi
 export LESSHISTFILE="$XDG_STATE_HOME/lesshst"
 export LESSKEY="$XDG_CONFIG_HOME/lesskey"
 export LESS='-M -R --mouse --use-color'
+export MANPAGER="less $LESS -Dd+r -Du+b"
+# https://felipec.wordpress.com/2021/06/05/adventures-with-man-color/
+# or
+# https://unix.stackexchange.com/questions/119/colors-in-man-pages
+# https://github.com/jez/dotfiles/blob/master/util/functions/man.sh
 
 # python
 export PYTHON_HISTORY="$XDG_STATE_HOME/python_history"
