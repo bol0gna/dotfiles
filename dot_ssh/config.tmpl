@@ -1,13 +1,8 @@
-{{- if .school }}
-Host *.duke.edu
-    User {{ .s_netid }}
-{{- end }}
-
 Host *
     IdentityFile ~/.ssh/id_ed25519
-{{- if eq .chezmoi.os "darwin" }}
     AddKeysToAgent yes
+    # ForwardAgent yes # apply this for trusted hosts
+{{- if eq .chezmoi.os "darwin" }}
     # UseKeychain yes
-    ForwardAgent yes
 {{- end }}
 

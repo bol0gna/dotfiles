@@ -1,23 +1,20 @@
+{{- $work := promptBoolOnce . "work" "Work setup" }}
 {{- $full_name := promptStringOnce . "full_name" "Full name" }}
 {{- $email := promptStringOnce . "email" "Email address" }}
 {{- $github := promptStringOnce . "github" "Github user" }}
 
-{{- $school := promptBoolOnce . "school" "School setup" }}
-{{- $s_netid := "" }}
-{{- $s_email := "" }}
-{{- if $school }}
-{{-     $s_netid = promptStringOnce . "s_netid" "NetID" }}
-{{-     $s_email = promptStringOnce . "s_email" "School email for git" }}
+{{- $work_email := "" }}
+{{- if $work }}
+{{-     $work_email = promptStringOnce . "work_email" "Work email" }}
 {{- end }}
 
 [data]
     full_name = {{ $full_name | quote }}
     email = {{ $email | quote }}
     github = {{ $github | quote }}
-    school = {{ $school }}
-{{- if $school }}
-    s_netid = {{ $s_netid | quote }}
-    s_email = {{ $s_email | quote }}
+    work = {{ $work }}
+{{- if $work }}
+    work_email = {{ $work_email | quote }}
 {{- end }}
 
 [edit]

@@ -15,6 +15,10 @@ sdev/**
 !sdev/.gitconfig
 {{ end }}
 
+{{ if .work }}
+.ssh/config
+{{ end }}
+
 {{ if ne .chezmoi.os "darwin" }}
 # install these only on mac
 .chezmoiscripts/darwin/**

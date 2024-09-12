@@ -47,11 +47,12 @@
 	safecrlf = true
 
 [user]
+{{- if .work }}
+	name = {{ .full_name }}
+	email = {{ .work_email }}
+{{- else }}
 	name = bol0gna
 	email = 75225753+bol0gna@users.noreply.github.com
-{{- if .school }}
-[includeIf "gitdir:~/sdev/"]
-	path = ~/sdev/.gitconfig
 {{ end }}
 {{- if eq .chezmoi.os "darwin" }}
 [credential]

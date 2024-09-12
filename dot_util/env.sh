@@ -14,6 +14,9 @@ export MANCOLOR=1
 if [ -e "/usr/local/bin/brew" ]; then
     export HOMEBREW_NO_ANALYTICS=1
     eval "$(/usr/local/bin/brew shellenv)"
+elif [ -e "/opt/homebrew/bin/brew" ]; then
+    export HOMEBREW_NO_ANALYTICS=1
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # less
@@ -56,4 +59,8 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 
 # wget
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
+# gcloud
+# export CLOUDSDK_PYTHON_SITEPACKAGES=1
+# export CLOUDSDK_PYTHON="$HOMEBREW_PREFIX/bin/python3"
 
