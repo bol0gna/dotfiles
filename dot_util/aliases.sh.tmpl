@@ -5,6 +5,9 @@ alias fgrep &> /dev/null || alias fgrep='fgrep --color=auto'
 alias egrep &> /dev/null || alias egrep='egrep --color=auto'
 
 ## navigation
+{{- if ne .chezmoi.os "darwin" }}
+alias ls &> /dev/null || alias ls='ls --color=auto'
+{{- end }}
 alias la='ls -ACF'
 alias ll='ls -lAFh'
 alias lll='ls -laFh'
