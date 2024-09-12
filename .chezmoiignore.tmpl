@@ -9,12 +9,6 @@ LICENSE
 
 app-prefs/**
 
-sdev/**
-{{ if not .school }}
-# install these only for school
-!sdev/.gitconfig
-{{ end }}
-
 {{ if .work }}
 .ssh/config
 {{ end }}
@@ -22,7 +16,7 @@ sdev/**
 {{ if ne .chezmoi.os "darwin" }}
 # install these only on mac
 .chezmoiscripts/darwin/**
-private_Library/**
+Library/**
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
