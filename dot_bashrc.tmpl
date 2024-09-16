@@ -16,7 +16,7 @@ rcload ~/.util/prompt.bash
 rcload ~/.util/completion.bash
 
 {{- if eq .chezmoi.os "linux" }}
-rcload ~/.util/ssh-agent.sh
+# rcload ~/.util/ssh-agent.sh
 {{-     if .work }}
 export PATH=$(echo $PATH | sed -e 's/.*remote-cli://')
 export PATH="$HOME/bin:$PATH"
