@@ -75,7 +75,7 @@
         "~/.pyenv/versions/*/lib/*/site-packages/"
     ],
     "python.defaultInterpreterPath": "python3",
-    "extensions.autoUpdate": "onlySelectedExtensions",
+    "extensions.autoUpdate": "onlyEnabledExtensions",
     "extensions.ignoreRecommendations": true,
     "files.insertFinalNewline": true
 }
