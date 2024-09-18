@@ -1,6 +1,7 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+ZPLUGINS=$ZDOTDIR/plugins
 
 ## Navigation & interactive ##
 setopt GLOB_DOTS            # include hidden .files
@@ -12,14 +13,15 @@ unsetopt COMPLETE_ALIASES   # tab treats aliases as their expanded form
 setopt AUTO_MENU            # second tab starts menu completion
 # ZLE_REMOVE_SUFFIX_CHARS=$' \t\n;&'
 
-source $ZDOTDIR/plugins/help.zsh
+source $ZPLUGINS/help.zsh
 
 
 ## Line editor ##
 bindkey -v
 export KEYTIMEOUT=50
 
-source $ZDOTDIR/plugins/cursor_mode.zsh
+source $ZPLUGINS/cursor_mode.zsh
+source $ZPLUGINS/keybinds.zsh
 
 
 ## History ##
