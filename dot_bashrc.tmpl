@@ -15,12 +15,9 @@ rcload ~/.util/aliases.sh
 rcload ~/.util/prompt.bash
 rcload ~/.util/completion.bash
 
-{{- if eq .chezmoi.os "linux" }}
-# rcload ~/.util/ssh-agent.sh
-{{-     if .work }}
+{{- if (and (eq .chezmoi.os "linux") .work) }}
 export PATH=$(echo $PATH | sed -e 's/.*remote-cli://')
 export PATH="$HOME/bin:$PATH"
-{{-     end }}
 {{- end }}
 
 # shopt -s histappend
