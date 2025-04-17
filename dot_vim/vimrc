@@ -48,6 +48,7 @@ Plug 'alker0/chezmoi.vim', { 'for': 'tmpl' }
 call plug#end()
 
 " filetypes
+set regexpengine=0
 syntax on
 if has('autocmd')
     filetype plugin indent on
