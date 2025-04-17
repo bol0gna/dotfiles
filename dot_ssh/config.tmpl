@@ -3,7 +3,8 @@ Host *
     AddKeysToAgent yes
     # ForwardAgent yes # apply this for trusted hosts
 {{- if eq .chezmoi.os "darwin" }}
-    # UseKeychain yes
+    IgnoreUnknown UseKeychain
+    UseKeychain yes
 {{- end }}
 
 Host github.com
