@@ -26,26 +26,57 @@
 	d = diff
 	ds = diff --staged
 	rs = restore
-	rss = restore --staged
+	unstage = restore --staged # reset HEAD --
 	rb = rebase
-	co = checkout
+	br = branch
+	bn = switch -c # checkout -b
+	sw = switch
+	uncommit = reset --soft HEAD^
 	graph = log --graph --oneline --decorate=short --branches='*'
 	# https://www.jessesquires.com/blog/2017/08/08/customizing-git-log/
 	smartlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
 	graphrel = log --graph --pretty=format:'%Cred%h%Creset -%Cblue%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-	unstage = reset HEAD --
-	uncommit = reset --soft HEAD^
 
-[init]
-	defaultBranch = main
-[push]
-	default = simple
+[branch]
+	sort = -committerdate
+[column]
+	ui = auto
+[diff]
+	algorithm = histogram
+	colorMoved = zebra
+	mnemonicPrefix = true
+	# renames = true # more expensive, detect file rename
+[help]
+	autocorrect = prompt
 [log]
 	follow = true
+[pager]
+	branch = false
+
+[tag]
+	sort = version:refname
 
 [core]
 	excludesfile = ~/.config/git/ignore
 	safecrlf = true
+[init]
+	defaultBranch = main
+[fetch]
+	# all = true
+	prune = true
+	pruneTags = true
+[push]
+	default = simple
+	autoSetupRemote = true
+	# followTags = true # push local tags not on the server
+[pull]
+	recurseSubmodules = on
+[rerere]
+	enabled = true # remember conflict resolutions w/ rebase
+[submodule]
+	recurse = true
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
 
 [user]
 {{- if .work }}
@@ -55,6 +86,7 @@
 	name = bol0gna
 	email = 75225753+bol0gna@users.noreply.github.com
 {{ end }}
+
 {{- if eq .chezmoi.os "darwin" }}
 [credential]
 	helper = osxkeychain
