@@ -1,6 +1,10 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
+typeset -gU PATH path FPATH fpath
+rcload ~/.util/env.sh
+
 ZPLUGINS=$ZDOTDIR/plugins
 
 ## Navigation & interactive ##
@@ -25,6 +29,9 @@ source $ZPLUGINS/keybinds.zsh
 
 
 ## History ##
+export HISTSIZE=5000
+export SAVEHIST=2500
+setopt APPEND_HISTORY           # sessions add to history (no overwrite)
 setopt HIST_EXPIRE_DUPS_FIRST   # delete duplicates first when trimming
 setopt HIST_IGNORE_DUPS         # don't record an event 2x in a row
 setopt HIST_IGNORE_ALL_DUPS     # delete old event if new is a duplicate
@@ -59,8 +66,9 @@ _comp_options+=(globdots) # completions for dotfiles too
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 
 # rcload already defined in ~/.zshenv
-# rcload ~/.util/env.sh # already loaded in ~/.zshenv
-rcload ~/.util/.secrets.sh
+secrets="$HOME/.util/.secrets.sh"
+[ -e $secrets ] && rcload $secrets
+unset secrets
 rcload ~/.util/aliases.sh
 rcload ~/.util/prompt.zsh
 

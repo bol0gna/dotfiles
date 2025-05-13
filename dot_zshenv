@@ -4,11 +4,7 @@ rcload ~/.util/env_xdg.sh
 
 SHELL_SESSIONS_DISABLE=1
 ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-HISTSIZE=5000
-SAVEHIST=2500
 # [ -d "$XDG_CACHE_HOME/zsh" ] || mkdir -p "$XDG_CACHE_HOME/zsh"
 
 export FPATH="$ZDOTDIR/plugins:$FPATH"
-
-rcload ~/.util/env.sh
 
