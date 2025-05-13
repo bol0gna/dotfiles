@@ -25,6 +25,7 @@ set skip-completed-text on
 
 $if Bash
 set colored-stats on
+set visible-stats on
 $endif
 
 

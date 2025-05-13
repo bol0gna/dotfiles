@@ -8,8 +8,12 @@ export HISTFILE="$XDG_STATE_HOME"/bash_history
 
 # ignore duplicate & whitespace-first cmds
 export HISTCONTROL='ignoreboth'
+shopt -s histappend
 
 rcload ~/.util/env.sh
+secrets="$HOME/.util/.secrets.sh"
+[ -e $secrets ] && rcload $secrets
+unset secrets
 rcload ~/.util/.secrets.sh
 rcload ~/.util/aliases.sh
 rcload ~/.util/prompt.bash
