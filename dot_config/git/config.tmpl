@@ -19,6 +19,10 @@
 	added = yellow
 	changed = green
 	untracked = cyan
+[column]
+	ui = auto
+[log]
+	follow = true
 
 [alias]
 	s = status -sb
@@ -52,7 +56,6 @@
 	follow = true
 [pager]
 	branch = false
-
 [tag]
 	sort = version:refname
 
@@ -79,6 +82,7 @@
 	insteadOf = https://github.com/
 
 [user]
+	useConfigOnly = true
 {{- if .work }}
 	name = {{ .full_name }}
 	email = {{ .work_email }}
