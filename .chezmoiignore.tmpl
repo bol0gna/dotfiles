@@ -1,33 +1,51 @@
 # ignore these no matter what
+**/*_history
+**/*hst
+.CFUserTextEncoding
+.Trash/
+.DS_Store
+.bash_sessions/
+.cache*
+.config/zsh/.zcompdump
+.npm/
+.ssh/
+.vim/plugged/
+!.vim/autoload/plug.vim
+
 README.md
 LICENSE
-.DS_Store
-.bash_sessions
-.vim/plugged/**
-.vim/autoload/plug.vim
-*history
-*hst
+app-prefs/
 
-app-prefs/**
+Desktop/
+Documents/
+Downloads/
+Movies/
+Music/
+Pictures/
+Public/
+Library/
 
 {{ if .work }}
 .ssh/config
+{{ else }}
+!.ssh/config
 {{ end }}
 
 {{ if ne .chezmoi.os "darwin" }}
 # install these only on mac
-.chezmoiscripts/darwin/**
-Library/**
+.chezmoiscripts/darwin/
+{{ else }}
+!Library/Application\ Support
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
 # install these only on linux
-.chezmoiscripts/linux/**
+.chezmoiscripts/linux/
 {{ end }}
 
 {{ if ne .chezmoi.os "windows" }}
 # install these only on windows
-.chezmoiscripts/windows/**
+.chezmoiscripts/windows/
 {{ else }}
 # install these only on non-windows
 .inputrc
