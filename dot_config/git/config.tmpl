@@ -29,12 +29,20 @@
 	st = status
 	d = diff
 	ds = diff --staged
+	dst = stash show -p # "diff stash"
+	sh = stash
+	shl = stash list
+	shd = stash drop
 	rs = restore
 	unstage = restore --staged # reset HEAD --
 	rb = rebase
+	rbc = rebase --continue
+	rba = rebase --abort
 	br = branch
 	bn = switch -c # checkout -b
 	sw = switch
+	a = add
+	c = commit
 	uncommit = reset --soft HEAD^
 	graph = log --graph --oneline --decorate=short --branches='*'
 	# https://www.jessesquires.com/blog/2017/08/08/customizing-git-log/
