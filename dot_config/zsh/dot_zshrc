@@ -21,7 +21,7 @@ source $ZPLUGINS/help.zsh
 ## Line editor ##
 bindkey -v
 export KEYTIMEOUT=50
-source $ZPLUGINS/cursor_mode.zsh
+[[ $GHOSTTY_SHELL_FEATURES != *"cursor"* ]] && source $ZPLUGINS/cursor_mode.zsh
 source $ZPLUGINS/keybinds.zsh
 
 

@@ -1,4 +1,4 @@
-# Set the cursor shape depending on the current mode in the line editor
+# Set the cursor shape depending on the current vi mode in the line editor
 
 _cursor_mode() {
     # See https://ttssh2.osdn.jp/manual/4/en/usage/tips/vim.html for cursor shapes
