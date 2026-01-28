@@ -19,10 +19,13 @@ source $ZPLUGINS/help.zsh
 
 
 ## Line editor ##
-bindkey -v
+bindkey -e
 export KEYTIMEOUT=50
 [[ $GHOSTTY_SHELL_FEATURES != *"cursor"* ]] && source $ZPLUGINS/cursor_mode.zsh
 source $ZPLUGINS/keybinds.zsh
+
+autoload -U select-word-style
+select-word-style bash
 
 
 ## History ##
@@ -55,8 +58,11 @@ fi
 
 unsetopt COMPLETE_ALIASES   # tab treats aliases as their expanded form
 setopt AUTO_MENU            # second tab starts menu completion
+setopt COMPLETE_IN_WORD     # self explanatory
+setopt ALWAYS_TO_END        # move cursor to end of word on completion/menu
 
 autoload -Uz +X compinit
+autoload -U +X bashcompinit && bashcompinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case insensitive
 zstyle ':completion:*' menu select # arrow keys in completion
 # cache
