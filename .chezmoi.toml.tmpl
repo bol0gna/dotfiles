@@ -1,21 +1,18 @@
 {{- $work := promptBoolOnce . "work" "Work setup" }}
 {{- $full_name := promptStringOnce . "full_name" "Full name" }}
-{{- $email := promptStringOnce . "email" "Email address" }}
-{{- $github := promptStringOnce . "github" "Github user" }}
 
-{{- $work_email := "" }}
+{{- $email := "" }}
 {{- if $work }}
-{{-     $work_email = promptStringOnce . "work_email" "Work email" }}
+{{- $email := promptStringOnce . "email" "Work email" }}
+{{- else }}
+{{- $email := promptStringOnce . "email" "Email address" }}
 {{- end }}
 
 [data]
     full_name = {{ $full_name | quote }}
     email = {{ $email | quote }}
-    github = {{ $github | quote }}
+    github = "bol0gna"
     work = {{ $work }}
-{{- if $work }}
-    work_email = {{ $work_email | quote }}
-{{- end }}
 
 [edit]
     command = "vim"

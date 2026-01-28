@@ -29,9 +29,10 @@
 	st = status
 	d = diff
 	ds = diff --staged
-	dst = stash show -p # "diff stash"
+	dsh = stash show -p # "diff stash"
 	sh = stash
 	shl = stash list
+	shp = stash pop
 	shd = stash drop
 	rs = restore
 	unstage = restore --staged # reset HEAD --
@@ -96,7 +97,7 @@
 	useConfigOnly = true
 {{- if .work }}
 	name = {{ .full_name }}
-	email = {{ .work_email }}
+	email = {{ .email }}
 {{- else }}
 	name = bol0gna
 	email = 75225753+bol0gna@users.noreply.github.com

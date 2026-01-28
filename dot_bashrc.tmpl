@@ -20,6 +20,6 @@ rcload ~/.util/prompt.bash
 rcload ~/.util/completion.bash
 
 {{- if (and (eq .chezmoi.os "linux") .work) }}
-rcload ~/.work.sh
+[ -f ~/.work.sh ] && builtin source ~/.work.sh
 {{- end }}
 

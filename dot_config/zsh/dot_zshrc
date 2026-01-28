@@ -75,3 +75,4 @@ unset secrets
 rcload ~/.util/aliases.sh
 rcload ~/.util/prompt.zsh
 
+[ -f ~/.work.sh ] && builtin source ~/.work.sh
